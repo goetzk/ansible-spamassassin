@@ -1,0 +1,29 @@
+---
+- name: Install spamassassin
+  yum: name=spamassassin state=present
+  tags:
+  - system
+  - spamassassin
+  - mail
+
+- name: Install perl SPF module
+  when: spamassassin_disable_spf != true
+  yum name={{ item }} state=present
+  with_items:
+  - perl-Mail-SPF
+#  - perl-Mail-SPF-Query
+  tags:
+  - system
+  - spamassassin
+  - mail
+
+- name: Install perl DKIM module
+  when: spamassassin_disable_dkim != true
+  yum name={{ item }} state=present
+  with_items:
+  - perl-Mail-DKIM
+  tags:
+  - system
+  - spamassassin
+  - mail
+

@@ -1,0 +1,13 @@
+---
+- name: Disable DKIM checking in Spamassassin
+  lineinfile: state=present
+    dest=/etc/spamassassin/v312.pre
+    line='# loadplugin Mail::SpamAssassin::Plugin::DKIM'
+    regexp='loadplugin Mail::SpamAssassin::Plugin::DKIM'
+  notify: restart spamassassin
+  tags:
+  - system
+  - spamassassin
+  - mail
+  - dkim
+

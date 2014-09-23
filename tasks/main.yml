@@ -1,0 +1,15 @@
+---
+# tasks file for goetzk.spamassassin
+- include: Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include: RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+# Do these need to be disabled or isn't it worth it?
+- include: disable-spf.yml
+  when: spamassassin_disable_spf
+
+- include: disable-dkim.yml
+  when: spamassassin_disable_dkim
+

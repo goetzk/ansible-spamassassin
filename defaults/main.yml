@@ -1,0 +1,5 @@
+---
+# Spamassassin variables
+spamassassin_lock_method_flock_enable: true
+spamassassin_disable_spf: false
+spamassassin_disable_dkim: false

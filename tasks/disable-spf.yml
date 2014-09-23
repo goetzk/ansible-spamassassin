@@ -1,0 +1,13 @@
+---
+- name: Disable SPF checking in Spamassassin
+  lineinfile: state=present
+    dest=/etc/spamassassin/v310.pre
+    line='# loadplugin Mail::SpamAssassin::Plugin::SPF'
+    regexp='loadplugin Mail::SpamAssassin::Plugin::SPF'
+  notify: restart spamassassin
+  tags:
+  - system
+  - spamassassin
+  - mail
+  - spf
+

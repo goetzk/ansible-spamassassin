@@ -1,0 +1,30 @@
+---
+- name: Install spamassassin
+  apt: pkg=spamassassin state=present
+  tags:
+  - system
+  - spamassassin
+  - mail
+
+- name: Enable (faster) flock for SA
+  lineinfile: state=present
+    dest=/etc/spamassassin/local.cf
+    line='lock_method flock'
+    regexp='^lock_method flock'
+  notify: restart spamassassin
+  tags:
+  - system
+  - spamassassin
+  - mail
+
+- name: Enable spamassassin
+  lineinfile: state=present
+    dest=/etc/default/spamassassin
+    line='ENABLED=1'
+    regexp='^ENABLED=.?'
+  notify: restart spamassassin
+  tags:
+  - system
+  - spamassassin
+  - mail
+
